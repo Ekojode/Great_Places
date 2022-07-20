@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import "../widgets/image_input.dart";
+
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);
 
@@ -30,7 +32,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       controller: _titleController,
                     ),
                     const SizedBox(height: 10),
-                    Container()
+                    const ImageInput(),
                   ],
                 ),
               ),
