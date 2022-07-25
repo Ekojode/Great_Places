@@ -9,6 +9,8 @@ class PlaceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final great = Provider.of<GreatPlaces>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Places"),
@@ -21,32 +23,40 @@ class PlaceList extends StatelessWidget {
           )
         ],
       ),
-      body: Consumer<GreatPlaces>(
-        child: Center(
-            child: TextButton(
-          child: const Text("You have no places yet, Add a new place now"),
-          onPressed: () {
-            Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
-          },
-        )),
-        builder: (BuildContext context, greatPlaces, Widget? child) {
-          return greatPlaces.items.isEmpty
-              ? child!
-              : ListView.builder(
-                  itemCount: greatPlaces.items.length,
-                  itemBuilder: (context, i) {
-                    return Card(
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: FileImage(greatPlaces.items[i].img!),
-                        ),
-                        title: Text(greatPlaces.items[i].name),
-                        onTap: () {},
-                      ),
-                    );
+      body: FutureBuilder(
+        future: great.fetchAndSetPlaces(),
+        builder: (ctx, snapShot) => snapShot.connectionState ==
+                ConnectionState.waiting
+            ? const Center(child: CircularProgressIndicator())
+            : Consumer<GreatPlaces>(
+                child: Center(
+                    child: TextButton(
+                  child:
+                      const Text("You have no places yet, Add a new place now"),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
                   },
-                );
-        },
+                )),
+                builder: (BuildContext context, greatPlaces, Widget? child) {
+                  return greatPlaces.items.isEmpty
+                      ? child!
+                      : ListView.builder(
+                          itemCount: greatPlaces.items.length,
+                          itemBuilder: (context, i) {
+                            return Card(
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage:
+                                      FileImage(greatPlaces.items[i].img!),
+                                ),
+                                title: Text(greatPlaces.items[i].name),
+                                onTap: () {},
+                              ),
+                            );
+                          },
+                        );
+                },
+              ),
       ),
     );
   }
