@@ -19,7 +19,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final TextEditingController _titleController = TextEditingController();
   File? _pickedImage;
 
-  void _selectImage(File pickedImage) {
+  void _selectImage(File? pickedImage) {
     _pickedImage = pickedImage;
   }
 
@@ -50,16 +50,16 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       controller: _titleController,
                     ),
                     const SizedBox(height: 10),
-                    ImageInput(
-                      onSelectImage: _selectImage,
-                    ),
+                    ImageInput(_selectImage),
                   ],
                 ),
               ),
             ),
           ),
           ElevatedButton.icon(
-              onPressed: _savePlace,
+              onPressed: () {
+                _savePlace();
+              },
               style: ElevatedButton.styleFrom(
                   elevation: 0,
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
