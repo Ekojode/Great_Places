@@ -1,4 +1,5 @@
-const accessToken = 'yourAccessToken';
+const accessToken =
+    'pk.eyJ1IjoiZWtvam9kZSIsImEiOiJjbDYxeTEwbmEwYm95M2pwbjk1MjJ0Y2syIn0.oIh61hWlaLBeC9WFdX7UWQ';
 
 class LocationHelper {
   static String getLocationPreviewImg(
