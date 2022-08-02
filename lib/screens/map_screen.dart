@@ -30,14 +30,25 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Location"),
+        actions: [
+          if (widget.isSelecting)
+            IconButton(
+                onPressed: _pickedLocation == null
+                    ? null
+                    : () {
+                        Navigator.of(context).pop(_pickedLocation);
+                      },
+                icon: const Icon(Icons.check))
+        ],
       ),
       body: GoogleMap(
-        markers: _pickedLocation != null
-            ? {
+        markers: _pickedLocation == null
+            ? {}
+            : {
                 Marker(
                     markerId: const MarkerId("m1"), position: _pickedLocation!)
-              }
-            : {},
+              },
+        mapType: MapType.terrain,
         onTap: widget.isSelecting ? _selectLocation : null,
         initialCameraPosition: CameraPosition(
             target: LatLng(
