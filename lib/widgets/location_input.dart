@@ -37,8 +37,13 @@ class _LocationInputState extends State<LocationInput> {
     if (selectedLocation == null) {
       return;
     }
+    final userLocation = LocationHelper.getLocationPreviewImg(
+        longitude: selectedLocation.longitude,
+        latitude: selectedLocation.latitude);
+    setState(() {
+      _previewImageUrl = userLocation;
+    });
     widget.selectPlace(selectedLocation.latitude, selectedLocation.longitude);
-    // print("${selectedLocation.latitude} is the selected Location latitude");
   }
 
   @override
