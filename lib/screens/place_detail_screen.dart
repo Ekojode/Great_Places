@@ -40,6 +40,7 @@ class PlaceDetailScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
+                    fullscreenDialog: true,
                     builder: (context) => MapScreen(
                       initialLocation: PlaceLocation(
                           latitude: place.location!.latitude,

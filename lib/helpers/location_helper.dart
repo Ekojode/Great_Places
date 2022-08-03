@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import "package:http/http.dart" as http;
 
 const accessToken =
@@ -19,8 +20,11 @@ class LocationHelper {
     final url = Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$googleApiKey');
     final response = await http.get(url);
+    final realResponse = jsonDecode(response.body);
+    debugPrint(realResponse.toString());
     final responseData =
-        jsonDecode(response.body)['results'][0]['formatted_address'] as String;
+        jsonDecode(response.body)['results'][0]['formatted_address'];
+
     return responseData;
   }
 }
