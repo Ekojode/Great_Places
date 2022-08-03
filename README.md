@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project was done in order to work with Native Device feautres such as;
+- Camera, 
+- On Device Storage using SQL,
+- Location using Google Maps and Location package
+- Phone Paths for finding stored data on device using Path and Path Provider
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+State Management: Provider
+Storage: On device using Sql
+Backend: None
